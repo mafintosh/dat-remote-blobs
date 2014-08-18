@@ -8,7 +8,7 @@ module.exports = function(remote) {
   var that = {}
 
   var req = function(method, opts) {
-    return request(remote+'/api/rows/'+encodeURIComponent(opts.key)+'/'+encodeURIComponent(opts.filename), {
+    return request(remote+'/api/rows/'+encodeURIComponent(opts.key)+'/'+encodeURIComponent(opts.name || opts.filename), {
       method: method,
       qs: {
         version: opts.version

@@ -19,7 +19,7 @@ var npm = blobs('npm.dathub.org')
 // key + filename or hash is required
 var rs = npm.createReadStream({
   key: '2gis',
-  filename: '2gis-0.0.2.tgz'
+  name: '2gis-0.0.2.tgz'
 })
 
 // this is a tarball - print the contents
