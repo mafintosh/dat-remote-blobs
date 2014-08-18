@@ -1,0 +1,18 @@
+{
+  "name": "dat-remote-blobs",
+  "version": "0.0.0",
+  "description": "blob store that uses the dat remote api",
+  "main": "index.js",
+  "dependencies": {
+    "once": "^1.3.0",
+    "request": "^2.40.0"
+  },
+  "devDependencies": {
+    "tar-stream": "^0.4.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mathias Buus",
+  "license": "MIT"
+}
