@@ -16,11 +16,13 @@ module.exports = function(remote) {
   }
 
   that.createReadStream = function(opts) {
+    if (opts.link) return request(opts.link)
     if (opts.hash) return request(remote+'/api/blobs/'+opts.hash)
     return req('GET', opts)
   }
 
   that.createWriteStream = function(opts) {
+    if (opts.link) return request.put(opts.link)
     return req('POST', opts)
   }
 
