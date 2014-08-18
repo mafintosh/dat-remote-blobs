@@ -4,6 +4,7 @@
   "description": "Blob store that uses the dat remote api",
   "main": "index.js",
   "dependencies": {
+    "end-of-stream": "^1.0.0",
     "once": "^1.3.0",
     "request": "^2.40.0"
   },
