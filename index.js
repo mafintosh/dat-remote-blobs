@@ -16,8 +16,11 @@ module.exports = function(remote) {
     })
   }
 
-  var onend = function(req, cb) {
-    eos(req, cb)
+  var onend = function(req, opts, cb) {
+    eos(req, function(err) {
+      if (err) return cb(err)
+      cb(null, opts)
+    })
     return req
   }
 
@@ -29,8 +32,8 @@ module.exports = function(remote) {
 
   that.createWriteStream = function(opts, cb) {
     if (typeof opts === 'function') throw new Error('options are required')
-    if (opts.link) return onend(request.put(opts.link), cb)
-    return onend(req('POST', opts), cb)
+    if (opts.link) return onend(request.put(opts.link), opts, cb)
+    return onend(req('POST', opts), opts, cb)
   }
 
   that.exists = function(opts, cb) {
