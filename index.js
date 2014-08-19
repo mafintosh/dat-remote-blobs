@@ -7,15 +7,6 @@ module.exports = function(remote) {
 
   var that = {}
 
-  var req = function(method, opts) {
-    return request(remote+'/api/rows/'+encodeURIComponent(opts.key)+'/'+encodeURIComponent(opts.name || opts.filename), {
-      method: method,
-      qs: {
-        version: opts.version
-      }
-    })
-  }
-
   var onend = function(req, opts, cb) {
     eos(req, function(err) {
       if (err) return cb(err)
@@ -26,14 +17,13 @@ module.exports = function(remote) {
 
   that.createReadStream = function(opts) {
     if (opts.link) return request(opts.link)
-    if (opts.hash) return request(remote+'/api/blobs/'+opts.hash)
-    return req('GET', opts)
+    return request(remote+'/api/blobs/'+opts.key)
   }
 
   that.createWriteStream = function(opts, cb) {
     if (typeof opts === 'function') throw new Error('options are required')
     if (opts.link) return onend(request.put(opts.link), opts, cb)
-    return onend(req('POST', opts), opts, cb)
+    throw new Error('link is required for updates')
   }
 
   that.exists = function(opts, cb) {

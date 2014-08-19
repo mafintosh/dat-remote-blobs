@@ -4,14 +4,8 @@ var tar = require('tar-stream')
 
 var npm = blobs('npm.dathub.org')
 
-npm.exists({
-  key: '2gis',
-  filename: '2gis-0.0.2.tgz'
-}, console.log)
-
 var rs = npm.createReadStream({
-  key: '2gis',
-  filename: '2gis-0.0.2.tgz'
+  key: '21d0324a65be1bf3e653d129360c6c2636c3ce68b5568f3ee3d4ea2a3daa0b09'
 })
 
 rs.pipe(zlib.createGunzip()).pipe(tar.extract())
