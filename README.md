@@ -14,7 +14,7 @@ var zlib = require('zlib')
 var tar = require('tar-stream')
 
 // pass a url to a remote dat instance
-var npm = blobs('npm.dathub.org')
+var npm = blobs({url:'npm.dathub.org'})
 
 // key is required
 var rs = npm.createReadStream({
