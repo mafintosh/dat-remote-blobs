@@ -2,8 +2,12 @@ var request = require('request')
 var once = require('once')
 var eos = require('end-of-stream')
 
-module.exports = function(remote) {
-  if (remote.indexOf('://') === -1) remote = 'http://'+remote
+module.exports = function(opts) {
+  if (typeof opts === 'string') opts = {url:opts}
+  if (!opts) opts = {}
+
+  var url = opts.url
+  if (url && url.indexOf('://') === -1) url = 'http://'+url
 
   var that = {}
 
@@ -17,7 +21,7 @@ module.exports = function(remote) {
 
   that.createReadStream = function(opts) {
     if (opts.link) return request(opts.link)
-    return request(remote+'/api/blobs/'+opts.key)
+    return request(url+'/api/blobs/'+opts.key)
   }
 
   that.createWriteStream = function(opts, cb) {
