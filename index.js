@@ -20,17 +20,20 @@ module.exports = function(opts) {
   }
 
   that.createReadStream = function(opts) {
+    if (typeof opts === 'string') opts = {key:opts}
     if (opts.link) return request(opts.link)
     return request(url+'/api/blobs/'+opts.key)
   }
 
   that.createWriteStream = function(opts, cb) {
+    if (typeof opts === 'string') opts = {key:opts}
     if (typeof opts === 'function') throw new Error('options are required')
     if (opts.link) return onend(request.put(opts.link), opts, cb)
     throw new Error('link is required for updates')
   }
 
   that.exists = function(opts, cb) {
+    if (typeof opts === 'string') opts = {key:opts}
     var req = that.createReadStream(opts)
     cb = once(cb)
 
@@ -39,6 +42,10 @@ module.exports = function(opts) {
       cb(null, res.statusCode === 200)
       req.abort()
     })
+  }
+
+  that.remove = function(opts, cb) {
+    throw new Error('Remove is not supported')
   }
 
   return that
