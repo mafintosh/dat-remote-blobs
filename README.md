@@ -6,6 +6,8 @@ Blob store that uses the dat remote api
 npm install dat-remote-blobs
 ```
 
+[![blob-store-compatible](https://raw.githubusercontent.com/maxogden/abstract-blob-store/master/badge.png)](https://github.com/maxogden/abstract-blob-store)
+
 ## Usage
 
 ``` js
